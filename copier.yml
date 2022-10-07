@@ -28,8 +28,8 @@ controller_endpoints:
   help: What are your new controller endpoints?
   multiline: true
 
-skip_routes:
-  type: bool
-  help: Skip modifying routes?
-  default: false
-
+# TEMPLATE NONE-CONFIGURABLE DEFAULTS
+package_name:
+  type: str
+  default: "{{ project_name|lower|replace(' ','_')|replace('-','_') }}"
+  when: false

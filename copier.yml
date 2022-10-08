@@ -19,11 +19,11 @@ project_name:
     
     Do not use dots or spaces in the name; just "A-Za-z0-9-_" please.
 
-controller_name:
+controller:
   type: str
   help: What is your new controller name?
 
-controller_endpoints:
+endpoints:
   type: json
   help: What are your new controller endpoints?
   multiline: true
@@ -32,4 +32,9 @@ controller_endpoints:
 package_name:
   type: str
   default: "{{ project_name|lower|replace(' ','_')|replace('-','_') }}"
+  when: false
+
+controller_name:
+  type: str
+  default: "{{ controller|lower|replace(' ','_')|replace('-','_') }}"
   when: false

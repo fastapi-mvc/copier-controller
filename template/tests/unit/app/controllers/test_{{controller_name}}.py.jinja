@@ -11,7 +11,7 @@ def client():
     app = get_app()
     with TestClient(app) as client:
         yield client
-{%- for endpoint, method in controller_endpoints.items() %}
+{%- for endpoint, method in endpoints.items() %}
 
 
 def test_{{endpoint}}(client):

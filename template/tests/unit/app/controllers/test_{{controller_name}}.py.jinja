@@ -14,8 +14,8 @@ def client():
 {%- for endpoint, method in endpoints.items() %}
 
 
-def test_{{endpoint}}(client):
-    response = client.{{method}}("/{{controller_name}}/{{endpoint}}")
+def test_{{ endpoint.lower().replace('-','_') }}(client):
+    response = client.{{ method.lower() }}("/{{ controller_name }}/{{ endpoint.lower().replace('-','_') }}")
     assert response.status_code == 200
     assert response.json() == {"hello": "world"}
 

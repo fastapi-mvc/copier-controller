@@ -1,0 +1,9 @@
+# Changes here will be overwritten by Copier
+_commit: d24bc7d
+_src_path: https://github.com/fastapi-mvc/copier-generator
+copyright_date: '2022'
+generator: controller
+generator_name: controller
+license: MIT
+nix: true
+repo_url: https://github.com/fastapi-mvc/copier-controller

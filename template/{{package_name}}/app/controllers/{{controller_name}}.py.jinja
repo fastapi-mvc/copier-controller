@@ -4,12 +4,9 @@ import logging
 from fastapi import APIRouter
 
 
-router = APIRouter(
-    prefix="/{{ controller_name }}"
-)
+router = APIRouter(prefix="/{{ controller_name }}")
 log = logging.getLogger(__name__)
-{%- for endpoint, method in endpoints.items() %}
-
+{% for endpoint, method in endpoints.items() %}
 
 @router.{{ method.lower() }}(
     "/{{ endpoint.lower().replace('-','_') }}",
@@ -18,11 +15,7 @@ log = logging.getLogger(__name__)
     # https://fastapi.tiangolo.com/tutorial/path-operation-configuration/
 )
 async def {{ endpoint.lower().replace('-','_') }}():
+    """Define {{ controller_name.lower().replace('_', ' ') }} {{ endpoint.lower() }} endpoint."""
     # Implement endpoint logic here.
     return {"hello": "world"}
-
-
-{%- endfor %}
-{%- raw %}
-
-{% endraw %}
+{% endfor %}

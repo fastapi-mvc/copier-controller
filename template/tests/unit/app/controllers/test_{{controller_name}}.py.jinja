@@ -1,26 +1,24 @@
 import pytest
 from fastapi.testclient import TestClient
-from {{package_name}}.app.asgi import get_app
+from {{package_name}}.app import get_application
 
 
-@pytest.fixture
-def client():
-    # This is an example fixture for generated test sake.
-    # By default there should be a 'app' fixture just like this under:
-    # tests/unit/app/conftest.py
-    app = get_app()
-    with TestClient(app) as client:
-        yield client
-{%- for endpoint, method in endpoints.items() %}
+class Test{{ controller_name.capitalize() }}Controller:
 
+    @pytest.fixture
+    def client(self):
+        # This is an example fixture for generated test sake.
+        # By default there should be a 'app_runner' fixture just like this under:
+        # tests/unit/app/conftest.py
+        app = get_application()
+        with TestClient(app) as client:
+            yield client
+{% for endpoint, method in endpoints.items() %}
+    def test_should{{ endpoint.lower().replace('-','_') }}_return_ok(self, client):
+        # given / when
+        response = client.{{ method.lower() }}("/api/{{ controller_name }}/{{ endpoint.lower().replace('-','_') }}")
 
-def test_{{ endpoint.lower().replace('-','_') }}(client):
-    response = client.{{ method.lower() }}("/{{ controller_name }}/{{ endpoint.lower().replace('-','_') }}")
-    assert response.status_code == 200
-    assert response.json() == {"hello": "world"}
-
-
-{%- endfor %}
-{%- raw %}
-
-{% endraw %}
+        # then
+        assert response.status_code == 200
+        assert response.json() == {"hello": "world"}
+{% endfor %}

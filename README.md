@@ -4,6 +4,19 @@ Copier template for scaffolding new controller upon [fastapi-mvc](https://github
 
 ## Quickstart
 
+### Using fastapi-mvc
+
+Prerequisites:
+* fastapi-mvc
+* Git 2.27 or newer
+
+```shell
+git clone "https://github.com/fastapi-mvc/copier-controller.git"
+FMVC_PATH="$PWD:$FMVC_PATH" fastapi-mvc generate controller /path/to/your/new/controller
+```
+
+### Using copier
+
 To use this template outside `fastapi-mvc`:
 
 Prerequisites:
